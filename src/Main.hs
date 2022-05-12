@@ -6,7 +6,9 @@ import Linear.Vector
 import qualified Data.Vector as V
 
 ild :: Int -> Int -> [V.Vector Rational]
-ild m h = map (V.map (% fromIntegral (m * h))) ilds
+ild m h
+  | 1 <= m && 1 <= h = map (V.map (% fromIntegral (m * h))) ilds
+  | otherwise = error "m and h must be greater than 1"
   where
     seeds :: [V.Vector Integer]
     seeds = [V.replicate m 0]
